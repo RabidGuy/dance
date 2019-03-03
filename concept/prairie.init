@@ -1,0 +1,13 @@
+/* Here, we use `l_party` which has its own label,
+ * `gnolls_with_hyenas` which needs a label to be provided, and the
+ * `environment` group which is written in raw format.
+ **/
+
+
+# "inc/l_party"
+
+:gnolls
+# "inc/gnolls_with_hyenas"
+
+:environment
+Storm 5

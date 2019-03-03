@@ -1,0 +1,19 @@
+:party
+Stub Hikels 4
+Donlof Dreamtide 3
+Occepi 2
+Greykurren 0
+Hurgan Garromarsh 0
+
+:hammer of crase
+Bandits 1
+Bandit Captain 3
+Mastiffs 2
+
+////
+// Drop ceiling debris the first time someone casts a thunder spell and every
+// round after.
+////
+
+:environment
+//ceiling Debris 2

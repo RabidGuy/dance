@@ -1,0 +1,39 @@
+:party
+Bun Silventhora 2
+Fyrono 3
+Thork
+Quomop Gadsbe 3 adv
+
+:kobold brigade
+Kobold Pikemen 2
+Winged Kobolds 3
+
+:environment
+Flame Geyser -4
+Lava 0
+
+:party
+Aosoth 3
+//Mint Cerith -1
+//Gregor 0
+//Sarcis Myexila 2
+//Aotep 2
+
+// Comments start with two forward slashes (//) and are used to write
+// content that is ignored by the initiative roller. They are a handy
+// way to toggle actors on and off if they enter or leave combat at
+// odd times, or if they die.
+
+// Labels start with a colon (:) and are used to group actors. When
+// two or more actors get the same initiative position, they share
+// that position if they're in the same group. Two or more groups
+// sharing the same initiative order will be shuffled. Labels are
+// applied to actors that are after them and before the next label,
+// if any. Two identical labels will create a single group including
+// actors from both sources.
+
+// Actors can include one or more names, an initiative bonus, and
+// either the `adv` or `disadv` keywords for advantage and
+// disadvantage, respectively. Keywords are case sensitive. Only one
+// actor can be represented per line. If a bonus is not included, the
+// default of zero (0) will be used.
