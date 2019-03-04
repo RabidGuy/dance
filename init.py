@@ -1,6 +1,6 @@
 #! /usr/bin/python3
 
-#   Copyright 2017 Jack Stout
+#   Copyright 2017-2019 Jack Stout
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@ import random
 import re
 
 
-def main(filename):
-    tokens = get_tokens_from_file(filename)
+def main(args):
+    tokens = get_tokens_from_file(args.filename)
     actors = get_actors_from_tokens(tokens)
     initiative_order = roll_and_organize_initiative_order(actors)
     for row in initiative_order:
@@ -134,9 +134,8 @@ def pretty_print(row):
 
 
 if __name__ == '__main__':
-    from sys import argv
-    if len(argv) != 2:
-        print("usage: init.py <filename>")
-        exit()
-    filename = argv[1]
-    main(filename)
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("filename")
+    args = parser.parse_args()
+    main(args)
