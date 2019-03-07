@@ -1,0 +1,20 @@
+// Comment ^o.o^
+
+
+// This file contains a label. Hence, the `l_`.
+include ../inc/l_party.init
+Golem \#5: 1
+
+// A label.
+# environment
+// <name>...: <val> [keyword]...
+Water Current: 15 force
+
+
+# goblins
+include ../inc/goblin_shaman.init
+include ../
+Red Wolves: 2 advantage
+
+
+# Must be able to escape forward slashes (/), pound signs (#), and colons (:) in names.

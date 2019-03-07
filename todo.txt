@@ -15,24 +15,34 @@ Capability
 ----------
 * Add macro style importing from other *.init files so that party.init can
   contain party information for all dungeon rooms and random encounters.
-  * Consider pound sign followed by quoted path. `# "../inc/party.init"`
+  - Consider pound sign followed by quoted path. `# "../inc/party.init"`
+  * Keeping in mind that explicit is better than implicit, it seems best to use
+    a descriptive format, such as `include "../inc/party.init"`, where all
+    references are relative to the referencing file's location.
+  * References must contain the entire relative path to the file, including the
+    filetype extension. Using the extension differs from Python's import
+    statement but is a familiar practice to those who have used includes in
+    C-style languages.
 * Allow inline and multi-line comments as used in C. i.e., double forward slash
   (//) to ignore rest of line and forward slash asterisk (/* ... */) to span
   one or more lines.
 * Ensure that file paths, input, and output work across various platforms.
 * Allow actors to have forced initiative positions. For instance, moving water
   might move certain characters at initiative position 15, every round.
-  * Consider using angle brackets (<15>) or exclamation marks (!15).
+  - Consider using angle brackets (<15>) or exclamation marks (!15).
       `Moving Water <15>`
   * No reason to roll an iniative result as its result is predefined.
   * No reason to consider keywords as none apply. (Raise warning if given?)
   * Alternatively, make this a keyword.
       `Moving Water 15 force`
+    Doing so maintains the standard that explicit is better than implicit.
 
 
 Strictness/Enforcement
 ----------------------
 * Require [namewords, bonus, keywords] ordering of terms.
+  * This syntax does not allow a nameword that can be interpreted as a number.
+    A better syntax needs to be designed.
 * Error if multiple bonuses. [*Needs clarification.]
 * Error if duplicate keywords or reduce them to one in data structure. `if not
   in actor['kw']: actor['kw'].append(keyword)`
@@ -48,6 +58,7 @@ Investigation
   might work.
 * Use code testing to ensure that things are behaving the way they appear to.
   Things to test:
-  * advantage and disadvantage.
-  * data structures and their manipulation.
-  * i/o standards for each function.
+  * advantage and disadvantage, as well as any other keywords
+  * data structures and their manipulation
+  * i/o standards for each function
+  * file includes

@@ -21,7 +21,7 @@ import re
 def main(args):
     tokens = get_tokens_from_file(args.filename)
     actors = get_actors_from_tokens(tokens)
-    initiative_order = roll_and_organize_initiative_order(actors)
+    initiative_order = roll_and_organize_initiative_order(actors, args)
     for row in initiative_order:
         pretty_print(row)
 
@@ -79,12 +79,12 @@ def get_actors_from_tokens(tokens):
     return actors
 
 
-def roll_and_organize_initiative_order(actors):
+def roll_and_organize_initiative_order(actors, args):
     # Roll and add bonus. Create clean list of actors for sorting.
     rolled_actors = []
     for actor in actors:
         # Creates list: [Group, Name]
-        rolled = [actor["group"], actor["name"]]
+        rolled = {"group": actor["group"], "name": actor["name"]}
         if not actor["flags"]:
             roll = d20()
         if "adv" in actor["flags"]:
@@ -94,15 +94,19 @@ def roll_and_organize_initiative_order(actors):
             two_rolls = [d20() for _ in range(2)]
             roll = min(two_rolls)
         # Modifies list: [Score, Group, Name]
-        rolled.insert(0, roll + actor["bonus"])
+        rolled["score"] = roll + actor["bonus"]
+        if args.verbose:
+            rolled["expression"] = (" [%i] + %i" % (roll, actor["bonus"]))
+        else:
+            rolled["expression"] = ""
         rolled_actors.append(rolled)
 
     # Build tree to organize grouping and score conflicts.
     working_order = {}
     for actor in rolled_actors:
-        score = actor[0]
-        group = actor[1]
-        name = actor[2]
+        score = actor["score"]
+        group = actor["group"]
+        name = actor["name"] + actor["expression"]
         if score not in working_order:
             working_order[score] = {}
         if group not in working_order[score]:
@@ -137,5 +141,7 @@ if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("filename")
+    parser.add_argument("-v", "--verbose", help="increase output verbosity",
+                        action="store_true")
     args = parser.parse_args()
     main(args)
