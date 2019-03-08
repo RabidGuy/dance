@@ -1,10 +1,8 @@
-:party
-Stub Hikels 4
-Donlof Dreamtide 3
-Occepi 2
-Greykurren 0
-Hurgan Garromarsh 0
+include ../characters/l_party.init
 
-:wildlife
-Wight 2
-Swarms of Quippers 3
+@ Wildlife
+  Wight: 2
+  Swarms of Quippers: 3
+
+@ Party
+  #Prisoner: -1

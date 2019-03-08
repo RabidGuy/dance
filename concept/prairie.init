@@ -1,13 +1,12 @@
-/* Here, we use `l_party` which has its own label,
- * `gnolls_with_hyenas` which needs a label to be provided, and the
- * `environment` group which is written in raw format.
- **/
+# Here, we use `l_party.init` which has its own label,
+# `gnolls_with_hyenas.init` which needs a label to be provided, and the
+# `Environment` group which is written in raw format.
 
 
-# "inc/l_party"
+include ../characters/l_party.init
 
-:gnolls
-# "inc/gnolls_with_hyenas"
+@ Gnolls
+  include ../monsters/gnolls_with_hyenas.init
 
-:environment
-Storm 5
+@ Environment
+  Storm: 5 advantage

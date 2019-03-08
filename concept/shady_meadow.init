@@ -1,10 +1,13 @@
-/* A murderous troop of `:bandits` consisting of a falconer, their
- * bird, and multiple berserkers.
- **/
+# A murderous troop of `@ Bandits` consisting of a falconer, their bird, and
+# multiple berserkers.
 
 
-# "inc/l_party"
+include ../characters/l_party.init
 
-:bandits
-# "inc/falconer" // Veteran, Blood Hawk
-# "inc/berserkers"
+
+@ Bandits
+
+  # Veteran, Blood Hawk
+  include ../monsters/falconer.init
+
+  Berserkers: 2

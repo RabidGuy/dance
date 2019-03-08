@@ -1,13 +1,11 @@
-:party
-Stub Hikels 4
-Donlof Dreamtide 3
-Occepi 2
-Greykurren 0
-Hurgan Garromarsh 0
+include ../characters/l_party.init
 
-:hammer of crase
-Bandits 1
-Mastiff 2
+@ Hammer of Crase
+  Bandits: 1
+  Mastiff: 2
 
-:monstrosities
-Mimic (worn stone box) 1
+@ Monstrosities
+  Mimic (worn stone box): 1
+
+@ Party
+  #Prisoner: -1
