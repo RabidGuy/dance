@@ -12,8 +12,35 @@ have even avoided using regular expression except where they made the code
 easier to understand.
 
 
-Capability
+Phases
+======
+As the program executes, it will step through a series of phases. These are Pre-processing, Processing, Randomization, Post-processing.
+
+Pre-Processing
+--------------
+Input: file
+Output: meta-file
+
+Meta-file: [<row object>, <row object>, ...]
+Row object: {"text": <line of text from file>, "filepath": <relative path to file>, "linenumber": <line number in source file>}
+
+Processing
 ----------
+Input: meta-file
+Output: list of actor objects
+
+Randomization
+-------------
+Operates on list of actor objects
+
+Post-processing
+---------------
+Input: list of actor objects
+Output: Pretty-printed results
+
+
+Capability
+==========
 * Add macro style importing from other *.init files so that party.init can
   contain party information for all dungeon rooms and random encounters.
   * Keeping in mind that explicit is better than implicit, it seems best to use
@@ -46,7 +73,7 @@ Capability
 
 
 Strictness/Enforcement
-----------------------
+======================
 * Require [<namewords>: <bonus> <keywords>] ordering of terms. A complete
   syntax has been designed and can be found in concept/syntax.init.
 * Add [-w|--warning] flag to output messages regarding borderline errors.
@@ -67,7 +94,7 @@ Strictness/Enforcement
 
 
 Investigation
--------------
+=============
 * Research whether there are any keywords that need to be added and how they
   might work.
 * Use code testing to ensure that things are behaving the way they appear to.

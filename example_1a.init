@@ -8,9 +8,7 @@ Quomop Gadsbe 3 adv
 Kobold Pikemen 2
 Winged Kobolds 3
 
-:environment
-Falling Rocks 2
-Water Current 0
+include example_1b.init
 
 :party
 Aosoth 3

@@ -14,37 +14,55 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+import os
+import pathlib
 import random
 import re
 
 
 def main(args):
-    tokens = get_tokens_from_file(args.filename)
-    actors = get_actors_from_tokens(tokens)
+    expanded_file = pre_process(args)
+    # process()
+    # shuffle()
+    # post_process()
+    actors = get_actors_from_tokens(expanded_file)
     initiative_order = roll_and_organize_initiative_order(actors, args)
     for row in initiative_order:
         pretty_print(row)
 
 
-def get_tokens_from_file(filename):
-    f = open(filename, 'r')
-    lines_of_tokens = []
-    for line in f.readlines():
-        line = line.strip()
-        # Ignore blank lines.
-        if not line:
-            continue
-        # Ignore comments.
-        if line.startswith("//"):
-            continue
-        lines_of_tokens.append(line.split())
-    f.close()
-    return lines_of_tokens
+def pre_process(args):
+    expanded_file = include(args.filename)
+    # for line in expanded_file:
+    #     print(line)
+    return expanded_file
 
 
-def get_actors_from_tokens(tokens):
+def include(filename, parentdir="."):
+    expanded_file = []
+    filepath = pathlib.Path(os.sep.join([parentdir, filename])).resolve()
+    with open(filepath) as f:
+        for line in f.readlines():
+            terms = line.split()
+            if not terms:
+                continue
+            elif terms[0].startswith("//"):
+                continue
+            elif terms[0] == "include":
+                pd = os.path.dirname(filepath)
+                expanded_file.extend(include(terms[1], pd))
+            else:
+                expanded_file.append(' '.join(terms))
+    return expanded_file
+
+
+def get_actors_from_tokens(lines):
     # XXX Does not enforce specific ordering of elements.
-    # XXX     [name parts, bonus, keywords]
+    # XXX     [<namewords>: <bonus> <keywords>]
+    def get_actors(lines):
+        for line in lines:
+            yield line.split()
+    tokens = get_actors(lines)
     actors = []
     group = ""
     for row in tokens:
