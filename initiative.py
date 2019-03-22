@@ -41,8 +41,10 @@ def pre_process(args):
 def include(filename, parentdir="."):
     expanded_file = []
     filepath = pathlib.Path(os.sep.join([parentdir, filename])).resolve()
+    linenumber = 0
     with open(filepath) as f:
         for line in f.readlines():
+            linenumber += 1
             terms = line.split()
             if not terms:
                 continue
@@ -52,7 +54,13 @@ def include(filename, parentdir="."):
                 pd = os.path.dirname(filepath)
                 expanded_file.extend(include(terms[1], pd))
             else:
-                expanded_file.append(' '.join(terms))
+                # expanded_file.append(' '.join(terms))
+                row = {
+                    "text": line,
+                    "filepath": filepath,
+                    "linenumber": linenumber
+                }
+                expanded_file.append(row)
     return expanded_file
 
 
@@ -61,7 +69,8 @@ def get_actors_from_tokens(lines):
     # XXX     [<namewords>: <bonus> <keywords>]
     def get_actors(lines):
         for line in lines:
-            yield line.split()
+            # print(line["filepath"], line["linenumber"])
+            yield line["text"].split()
     tokens = get_actors(lines)
     actors = []
     group = ""

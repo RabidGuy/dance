@@ -1,20 +1,13 @@
 ToDo:
 =====
 
-This software works fine exactly as it is, but could be better. These are some
-problems and ideas I may address in future updates.
-
-Keep in mind that the focus is ease of use at the game table, rather than
-having a feature rich environment. Complexity of use and of the code base
-should only increase with great consideration to how it will affect both users
-and maintainers. I've intentionally avoided writing anything like a lexer and
-have even avoided using regular expression except where they made the code
-easier to understand.
+*
 
 
 Phases
 ======
-As the program executes, it will step through a series of phases. These are Pre-processing, Processing, Randomization, Post-processing.
+As the program executes, it will step through a series of phases. These
+are Pre-processing, Processing, Randomization, Post-processing.
 
 Pre-Processing
 --------------
@@ -22,16 +15,29 @@ Input: file
 Output: meta-file
 
 Meta-file: [<row object>, <row object>, ...]
-Row object: {"text": <line of text from file>, "filepath": <relative path to file>, "linenumber": <line number in source file>}
+Row object: {"text": <line of text from file>,
+             "filepath": <relative path to file>,
+             "linenumber": <line number in source file>}
+
+The filepath and linenumber are stored for use in error messages. These
+should point the user toward the problem text.
 
 Processing
 ----------
 Input: meta-file
-Output: list of actor objects
+Output: actor list
+
+Actor list: [<actor object>, <actor object>, ...]
+Actor object: {"name": <text left of colon, stripped>,
+               "group": <most recent group label, if any, else None>,
+               "bonus": <(int) to right of colon>,
+               "keyword": <text to right of bonus, if any, else None>}
 
 Randomization
 -------------
-Operates on list of actor objects
+Operates on list of actor objects, generating a d20 roll for each.
+
+Actor object: {..., "roll": <random (int) between 1 and 20>}
 
 Post-processing
 ---------------
@@ -41,15 +47,6 @@ Output: Pretty-printed results
 
 Capability
 ==========
-* Add macro style importing from other *.init files so that party.init can
-  contain party information for all dungeon rooms and random encounters.
-  * Keeping in mind that explicit is better than implicit, it seems best to use
-    a descriptive format, such as `include ../inc/party.init`, where all
-    references are relative to the referencing file's location.
-  * References must contain the entire relative path to the file, including the
-    filetype extension. Using the extension differs from Python's import
-    statement but is a familiar practice to those who have used includes in
-    C-style languages.
 * Allow comments to be used on any line, such that everything right of the
   comment is ignored.
 * Ensure that file paths, input, and output work across various platforms.
