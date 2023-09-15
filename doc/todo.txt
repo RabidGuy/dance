@@ -1,7 +1,14 @@
 ToDo:
 =====
 
-*
+1. Separate Branch
+   a. Bring all documentation up to new syntax and consolidate into a
+      more cohesive set.
+   b. Update existing functionality to accept new syntax, up to the
+      the limit of current functionality and no further.
+2. Separate Branch
+   a. Implement new functionality supported by new syntax and structure
+      model.
 
 
 Phases
