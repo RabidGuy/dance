@@ -1,0 +1,10 @@
+/* A murderous troop of `:bandits` consisting of a falconer, their
+ * bird, and multiple berserkers.
+ **/
+
+
+# "inc/l_party"
+
+:bandits
+# "inc/falconer" // Veteran, Blood Hawk
+# "inc/berserkers"
