@@ -1,11 +1,11 @@
 include ../characters/l_party.init
 
 @ Hammer of Crase
-	Bandits: 1
-	Mastiff: 2
+  Bandits: 1
+  Mastiff: 2
 
 @ Monstrosities
-	Mimic (worn stone box): 1
+  Mimic (worn stone box): 1
 
 @ Party
-	#Prisoner: -1
+  #Prisoner: -1
