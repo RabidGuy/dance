@@ -5,7 +5,8 @@ ToDo:
    a. Bring all documentation up to new syntax and consolidate into a
       more cohesive set.
    b. Update existing functionality to accept new syntax, up to the
-      the limit of current functionality and no further.
+      the limit of current functionality and no further. (Be willing to
+      work past this limit if not doing so would impede development.)
 2. Separate Branch
    a. Implement new functionality supported by new syntax and structure
       model.
@@ -72,8 +73,10 @@ Capability
   * 3 do both 1 and 2
 * Add a mode that halts the program after the input file has been fully
   expanded---all includes have been followed and inserted---dumping the final
-  version of the file to stdout.
+  version of the file to stdout. Does stdout (rather than print) allow use of pipe?
+  I don't know that it does, or conversely that print doesn't.
   * [-e|--expand], [-d|--dump]
+    (This is done in compilation and assembly. What flag is used then?)
 
 
 Strictness/Enforcement
@@ -107,3 +110,5 @@ Investigation
   * data structures and their manipulation
   * i/o standards for each function
   * file includes
+    * circular references
+    * correct filepath and linenumber in errors

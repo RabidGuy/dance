@@ -14,4 +14,4 @@ include ../characters/l_party.init
   #Ceiling Debris: 2
 
 @ Party
-  #Prisoner: -1
+  Prisoner: -1

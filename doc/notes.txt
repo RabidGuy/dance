@@ -1,3 +1,7 @@
+XXX Consider file for removal. Ensure relevant info is retained elsewhere.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 Notice: These notes were written while typing the very basic parts of this
 application. They are not accurate.
 
@@ -114,3 +118,15 @@ Psuedocode:
 pass
 
 Output:
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+XXX This explanation of matching initiative rolls came from an example file in the deprecated ord project.
+
+Labels start with a colon (:) and are used to group actors. When
+two or more actors get the same initiative position, they share
+that position if they're in the same group. Two or more groups
+sharing the same initiative order will be shuffled. Labels are
+applied to actors that are after them and before the next label,
+if any. Two identical labels will create a single group including
+actors from both sources.

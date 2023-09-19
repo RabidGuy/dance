@@ -1,8 +1,0 @@
-/* `l_rasilis` includes a group label, which `wolves` uses.
- **/
-
-
-# "inc/l_party"   // Has label.
-
-# "inc/l_rasilis" // Has label.
-# "inc/wolves"    // Does not have label.

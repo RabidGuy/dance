@@ -18,12 +18,3 @@ Strictness/Enforcement
 * Error if multiple bonuses.
 * Error if duplicate keywords or reduce them to one in data structure. `if not in actor['kw']: actor['kw'].append(keyword)`
 * Error if conflicting keywords. `adv` and `disadv` should raise error, rather than cancelling eachother.
-
-
-Investigation
--------------
-* Research whether there are any keywords that need to be added and how they might work.
-* Use code testing to ensure that things are behaving the way they appear to. Things to test:
-  > advantage and disadvantage.
-  > data structures and their manipulation.
-  > i/o standards for each function.
