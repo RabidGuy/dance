@@ -1,11 +1,11 @@
 include ../characters/l_party.init
 
 @ Hammer of Crase
-  Bandits: 1
-  Berserker: 2
+	Bandits: 1
+	Berserker: 2
 
 @ Wildlife
-  Giant Wolf Spiders: 3
+	Giant Wolf Spiders: 3
 
 @ Party
-  Prisoner: -1
+	Prisoner: -1

@@ -3,10 +3,10 @@
 # `Environment` group which is written in raw format.
 
 
-include ../characters/l_party.init
+include characters/l_party.init
 
 @ Gnolls
-  include ../monsters/gnolls_with_hyenas.init
+	include monsters/gnolls_with_hyenas.init
 
 @ Environment
-  Storm: 5 advantage
+	Storm: 5 advantage

@@ -2,12 +2,12 @@
 # multiple berserkers.
 
 
-include ../characters/l_party.init
+include characters/l_party.init
 
 
 @ Bandits
 
-  # Veteran, Blood Hawk
-  include ../monsters/falconer.init
+	# Veteran, Blood Hawk
+	include monsters/falconer.init
 
-  Berserkers: 2
+	Berserkers: 2

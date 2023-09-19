@@ -2,7 +2,7 @@
 # it's the most recent label given.
 
 
-include ../characters/l_party.init    # Has label.
+include characters/l_party.init    # Has label.
 
-include ../characters/l_rasilis.init  # Has label.
-include ../monsters/wolves.init       # Does not have label.
+include characters/l_rasilis.init  # Has label.
+include monsters/wolves.init       # Does not have label.

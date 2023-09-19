@@ -112,3 +112,16 @@ Investigation
   * file includes
     * circular references
     * correct filepath and linenumber in errors
+
+
+Documentation
+=============
+* Complete syntax rules and usage
+* Example
+  * Identify points to teach in examples.
+  * Build example dungeon with map.
+  * Each encounter should focus on a lesson.
+    * "At this point, the prisoner has been rendered unconscious. The DM opens
+      the `prisoner.init` file and adds a hash (#) in front of the prisoner's
+      declaration. This removes the prisoner from all files that reference
+      `prisoner.init'."
