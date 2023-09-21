@@ -75,20 +75,30 @@ Capability
   expanded---all includes have been followed and inserted---dumping the final
   version of the file to stdout. Does stdout (rather than print) allow use of pipe?
   I don't know that it does, or conversely that print doesn't.
-  * [-e|--expand], [-d|--dump]
-    (This is done in compilation and assembly. What flag is used then?)
+  * `[-e|--expand]`, `[-d|--dump]`
+    (XXX This is done in compilation and assembly. What flag is used then?)
+  * We could make this more general by allowing it to dump after any stage in
+    the pipeline. Default would be the last stage, but the user could dump after
+    any specific stage is completed.
+
+      `[--dump-after <preprocess|process|randomization|postprocess>]`
+
+    We would need to add something like `if settings.dump-after == "process"`
+    between each stage in `main()`.
 
 
 Strictness/Enforcement
 ======================
-* Require [<namewords>: <bonus> <keywords>] ordering of terms. A complete
+* Require `<namewords>: <bonus> [keyword]` ordering of terms. A complete
   syntax has been designed and can be found in concept/syntax.init.
 * Add [-w|--warning] flag to output messages regarding borderline errors.
   * These should be any error in which the program is making an assumption and
     moving on, rather than crashing. One example is the case where an actor is
     given a binary keyword twice, such as advantage. Listing it twice does not
     mean anything different than list it once, so the program assumes you meant
-    to write it once.
+    to write it once. (XXX Is this example realistic? Is there a situation in
+    which using two keywords would be correct? If not, having two keywords--
+    whatever they may be--should cause an error every time.)
   * Warnings should include file path and line number.
 * Any repeated keyword should be considered as though it was written only once.
   * Give warning if -w used.
@@ -100,10 +110,8 @@ Strictness/Enforcement
   * f, force
 
 
-Investigation
-=============
-* Research whether there are any keywords that need to be added and how they
-  might work.
+Testing
+=======
 * Use code testing to ensure that things are behaving the way they appear to.
   Things to test:
   * advantage and disadvantage, as well as any other keywords
@@ -117,7 +125,7 @@ Investigation
 Documentation
 =============
 * Complete syntax rules and usage
-* Example
+* Example idea 1
   * Identify points to teach in examples.
   * Build example dungeon with map.
   * Each encounter should focus on a lesson.
@@ -125,3 +133,9 @@ Documentation
       the `prisoner.init` file and adds a hash (#) in front of the prisoner's
       declaration. This removes the prisoner from all files that reference
       `prisoner.init'."
+* Example idea 2
+  * Build a library that would be practical for a person running fights.
+  * Create folders for characters, enemies, creatures, and factions.
+  * Demonstrate references between files in the library.
+  * Build a handful of encounters using only a few of those library files.
+  * Explain what is being done and why.

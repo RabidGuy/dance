@@ -1,0 +1,39 @@
+XXX Migrate Phases section of todo.txt into this file and remove from todo.txt.
+
+Phases
+======
+As the program executes, it will step through a series of phases. These
+are:
+
+  1. Pre-processing
+  2. Proceessing
+  3. Randomization
+  4. Post-processing
+
+
+1. Pre-processing
+-----------------
+
+Input: path to *.init file
+Output: list of line objects representing input file with expanded references
+
+
+2. Proceessing
+--------------
+
+Input: list of line objects
+Output: list of actor objects
+
+
+3. Randomization
+----------------
+
+Input: list of actor objects
+Output: list of actor objects with individual initiative results
+
+
+4. Post-processing
+------------------
+
+Input: list of actor objects with individual initiative results
+Output: results which have been sorted, grouped, and pretty-printed
