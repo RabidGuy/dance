@@ -34,3 +34,46 @@ relative_path:
 group_label
 
 comments start with a hash (#) and continue to the end of the line
+
+```
+usage:
+
+$ python dance.py cavern_entrance.init
+22: Wolves
+19: Danny
+19: Goblin Mage
+15: Guards
+13: Kyle
+ 6: Prisoner, Brenna
+ 1: John
+ ```
+
+```
+# cavern_entrance.init
+
+# Entrance to inhabited cavern
+
+insert l_party.init
+Prisoner: -1
+
+@goblins
+insert wolf_guards.init
+Goblin Mage: 1
+```
+
+```
+# l_party.init
+
+@party
+John: 0
+Danny: 2
+Brenna: 1
+Kyle: -1
+```
+
+```
+# wolf_guards.init
+
+Guards: 1
+Wolves: 2
+```

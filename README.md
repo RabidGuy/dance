@@ -7,10 +7,10 @@
 usage:
 
 $ python dance.py cavern_entrance.init
-22: wolves
+22: Wolves
 19: Danny
-19: goblin mage
-15: guards
+19: Goblin Mage
+15: Guards
 13: Kyle
  6: Prisoner, Brenna
  1: John
@@ -26,7 +26,7 @@ Prisoner -1
 
 :goblins
 include wolf_guards.init
-goblin mage 1
+Goblin Mage 1
 ```
 
 ```
@@ -42,6 +42,6 @@ Kyle -1
 ```
 // wolf_guards.init
 
-guards 1
-wolves 2
+Guards 1
+Wolves 2
 ```
