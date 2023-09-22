@@ -34,7 +34,7 @@ Row object: {"text": <line of text from file>,
 
 While pre-processing, we do depth-first navigation of the input file and all referenced files. The contents of a referenced file are included in the meta-file at the point of reference, as though the content of the referenced file was in fact content within the referencing file.
 
-When we get to the end of a file during navigation, we put the contents of that file, fully expanded, into a table which is keyed to the file's absolute path. When a file is referenced, we first look into the table to see the absolute path has already been expanded. If it has already been expanded, we duplicate it into the current file and continue. Otherwise, we expand the referenced file, add it to the table, and insert it into the current file before continuing.
+When we get to the end of a file during navigation, we put the contents of that file, fully expanded, into a table which is keyed to the file's absolute path. When a file is referenced, we first look into the table to see the absolute path has already been expanded. If it has already been expanded, we duplicate it into the current file and continue. Otherwise, we expand the referenced file, add it to the table, and insert it into the current file before continuing. The table is necessary in order to catch circular references but it may not be necessary to store expanded file content in the table since total lines read per execution should be quite low.
 
 The meta-file we generate is a list of dictionaries. The dictionaries represent all non-blank lines of the source file and its references, in the order they were read.
 
