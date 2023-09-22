@@ -19,16 +19,8 @@ are Pre-processing, Processing, Randomization, Post-processing.
 
 Pre-Processing
 --------------
-Input: file
-Output: meta-file
+(This phase has been described in /doc/future/pipeline.txt.)
 
-Meta-file: [<row object>, <row object>, ...]
-Row object: {"text": <line of text from file>,
-             "filepath": <relative path to file>,
-             "linenumber": <line number in source file>}
-
-The filepath and linenumber are stored for use in error messages. These
-should point the user toward the problem text.
 
 Processing
 ----------
@@ -41,11 +33,13 @@ Actor object: {"name": <text left of colon, stripped>,
                "bonus": <(int) to right of colon>,
                "keyword": <text to right of bonus, if any, else None>}
 
+
 Randomization
 -------------
 Operates on list of actor objects, generating a d20 roll for each.
 
 Actor object: {..., "roll": <random (int) between 1 and 20>}
+
 
 Post-processing
 ---------------
