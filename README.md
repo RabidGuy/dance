@@ -1,7 +1,8 @@
-// [comment]
-
-:<label>
-<name> <bonus>
+Syntax overview:
+	// [comment]
+	:<group_name>
+	<name> <bonus>
+	include <relative_path>
 
 ```
 usage:

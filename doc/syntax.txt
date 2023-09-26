@@ -9,14 +9,14 @@ application. They are not accurate.
 File Contents
 =============
 
-Labels
+Groups
 
-	:<label>
+	:<group_name>
 	[definition]
 	...
 
-	Labels define grouping for conflict resolution. Actors from the same group
-	that get the same initiative value are grouped together, sharing one
+	Group names define grouping for conflict resolution. Actors from the same
+	group that get the same initiative value are grouped together, sharing one
 	initiative row in the program's output. If multiple such groups share the
 	same initiative value, the order is shuffled without modifying any of the
 	groups. All actors sharing a single initiative value still fall between
@@ -123,10 +123,10 @@ Output:
 
 XXX This explanation of matching initiative rolls came from an example file in the deprecated ord project.
 
-Labels start with a colon (:) and are used to group actors. When
+Groups start with a colon (:) and are used to group actors. When
 two or more actors get the same initiative position, they share
 that position if they're in the same group. Two or more groups
-sharing the same initiative order will be shuffled. Labels are
-applied to actors that are after them and before the next label,
-if any. Two identical labels will create a single group including
+sharing the same initiative order will be shuffled. Groups are
+applied to actors that are after them and before the next group,
+if any. Two identical groups will create a single group including
 actors from both sources.

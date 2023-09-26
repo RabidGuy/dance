@@ -77,7 +77,7 @@ def get_actors_from_tokens(lines):
     actors = []
     group = ""
     for row in tokens:
-        # Handle labels.
+        # Handle groups.
         if row[0].startswith(':'):
             group = ' '.join(row)[1:]
             continue
