@@ -21,7 +21,7 @@ $ python dance.py cavern_entrance.init
 
 // Entrance to inhabited cavern
 
-include l_party.init
+include party_group.init
 Prisoner -1
 
 :goblins
@@ -30,7 +30,7 @@ Goblin Mage 1
 ```
 
 ```
-// l_party.init
+// party_group.init
 
 :party
 John 0

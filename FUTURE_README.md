@@ -12,8 +12,8 @@ name:
 bonus: an integer
 
 keyword--zero or one of the following:
-* `advantage`, `adv`, or `a`
-* `disadvantage`, `dis`, or `d`
+* `advantage` or `a`
+* `disadvantage` or `d`
 * `force` or `f`
 
 reserved word: `insert`
@@ -29,11 +29,15 @@ relative_path:
 * `./filename.init`: same as `filename.init`
 * `../filename.init`: a file in the parent directory
 
-@<group_label>
+`@ <group_label>`
 
-group_label
+group_label:
+* one or more words
+* not case-sensitive
+* whitespace reduced to one space internally
 
-comments start with a hash (#) and continue to the end of the line
+`# [comment]`
+* start at hash (#) and continue to end of line
 
 ```
 usage:
@@ -49,22 +53,22 @@ $ python dance.py cavern_entrance.init
  ```
 
 ```
-# cavern_entrance.init
+# cavern_entrance_scene.init
 
 # Entrance to inhabited cavern
 
-insert l_party.init
+insert party_group.init
 Prisoner: -1
 
-@goblins
+@ Goblins
 insert wolf_guards.init
 Goblin Mage: 1
 ```
 
 ```
-# l_party.init
+# party_group.init
 
-@party
+@ Party
 John: 0
 Danny: 2
 Brenna: 1
