@@ -1,17 +1,38 @@
-XXX Consider file for removal. Ensure relevant info is retained elsewhere.
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-Notice: These notes were written while typing the very basic parts of this
-application. They are not accurate.
-
-
 File Contents
 =============
 
+Files consist of four elements: definitions, groups, inserts, and comments.
+You may have one element per line in the file. Blank lines are allowed and
+lines may have leading or trailing whitespace, which allows for indentation.
+
+
+Elements
+--------
+
+Comments
+
+	#[any number of words or characters before EOL]
+
+	Comments must be placed on their own line and are ignored by the program.
+	They can be used to add descriptions within the file as well as to toggle off
+	lines without deleting them.
+
+
+Definition Syntax
+
+	<nameword> [[nameword] ...]: <modint> [[keyword] ...]
+
+	Each defintion must be placed on their own line. They are constructed of one
+	or more name words, a colon, exactly one integer, and zero or more keywords.
+
+	Example:
+
+		Quomop Gadsbe: 3 adv
+
+
 Groups
 
-	:<group_name>
+	@<group_name>
 	[definition]
 	...
 
@@ -21,27 +42,6 @@ Groups
 	same initiative value, the order is shuffled without modifying any of the
 	groups. All actors sharing a single initiative value still fall between
 	actors with higher and lower values than their own.
-
-
-Comments
-
-	//[any number of words or characters before EOL]
-
-	Comments must be placed on their own line and are ignored by the program.
-	They can be used to add descriptions within the file as well as to toggle off
-	lines without deleting them.
-
-
-Definition Syntax
-
-	<nameword> [[nameword] ...] <modint> [[keyword] ...]
-
-	Each defintion must be placed on their own line. They are constructed of one
-	or more name words, exactly one integer, and zero or more keywords.
-
-	Example:
-
-		Quomop Gadsbe 3 adv
 
 
 Names
@@ -60,73 +60,13 @@ Keywords
 
 	adv - roll twice, take higher
 	disadv - roll twice, take lower
+	force - return modint as result instead of rolling
 
 
 Including Content from Other Files
 
-	# include <filename>
+	insert <relativepath>
 
-
-Tokens
-======
-
-Input: (Stripped of whitespace, macros, and comments.)
-
-[
-	["Quomop", "Gadsbe", "3", "adv"],
-	["E-X80-7", "-1"]
-]
-
-Psuedocode:
-
-create list, rows
-for each line in input:
-	create list, tokens
-	for each string in line:
-		is it an integer?
-			append score token to tokens list
-			continue
-		is it a keyword?
-			append keyword token to tokens list
-			continue
-		append name token to tokens list
-	append tokens list to rows list
-return rows list
-
-Output:
-
-[
-	[{"text": "Quomop", "type": "name"},
-	 {"text": "Gadsbe", "type": "name"},
-	 {"text": "3", "type": "score"},
-	 {"text": "adv", "type": "keyword"}],
-
-	[{"text": "X-80", "type": "name"},
-	 {"text": "-1", "type": "score"}]
-]
-
-
-Actors
-======
-
-Input:
-
-<from token output>
-
-Psuedocode:
-
-pass
-
-Output:
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-XXX This explanation of matching initiative rolls came from an example file in the deprecated ord project.
-
-Groups start with a colon (:) and are used to group actors. When
-two or more actors get the same initiative position, they share
-that position if they're in the same group. Two or more groups
-sharing the same initiative order will be shuffled. Groups are
-applied to actors that are after them and before the next group,
-if any. Two identical groups will create a single group including
-actors from both sources.
+	Examples:
+		insert ../monsters/grey dwarves
+		insert ../monsters/grey dwarves.init

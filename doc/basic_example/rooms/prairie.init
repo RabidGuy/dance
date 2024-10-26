@@ -1,0 +1,12 @@
+# Here, we use `l_party.init` which has its own label,
+# `gnolls_with_hyenas.init` which needs a label to be provided, and the
+# `Environment` group which is written in raw format.
+
+
+insert ../characters/l_party.init
+
+@ Gnolls
+	insert ../monsters/gnolls_with_hyenas.init
+
+@ Environment
+	Storm: 5 advantage

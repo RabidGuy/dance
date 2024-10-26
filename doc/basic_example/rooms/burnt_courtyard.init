@@ -1,0 +1,11 @@
+# `l_rasilis.init` includes a group label, which `wolves.init` uses because
+# it's the most recent label given.
+
+
+# Has label.
+insert ../characters/l_party.init
+# Has label.
+insert ../characters/l_rasilis.init
+
+# Does not have label.
+insert ../monsters/wolves.init
