@@ -147,21 +147,17 @@ Warnings raised:
 
 Several things happen in this step.
   * A list is created to hold actors.
-  * If a line contains a comment, the comment symbol and trailing characters are removed.
-  * Lines that contain content after having any comment removed are either definitions or group labels.
+  * If the line is a comment, the line is removed.
+  * Lines which remain after comments are removed are either definitions or group labels.
   * We track the most recent group label by storing it until another is found to replace it. All definitions after the first label will be part of some group. Definitions before the first label--regardless of whether a label exists--are part of no group.
   * Definitions are added to the actor list in the form of a dictionary.
   * The line information is lost in this phase. The "abspath" and "linenumber" are used when outputing an error and are otherwise ignored. The "text" for the line is used to generate the actor object and is then discarded.
 
 [
-  XXXnext I'm realizing that the lexer-like behavior we need for this phase is also needed in the pre-processing phase when reading inserts. Inserts can be written in two forms:
+    insert ../humanoids/elf scout
+    insert ../humanoids/elf scout.init
 
-    insert  ../humanoids/elf\ scout
-    insert "../humanoids/elf scout"
-
-  The filename includes white space. The first form represents this whitespace with an escape character while the second form uses quotation marks to define a string.
-
-  The solution to this problem that I am currently considering is change when phases occur. Rather than completing a phase as a full pass over the file content, we can instead step through the phases on each line. We would interpret the line and handle it accordingly, keeping information in a table as we go. This table would include the current group, absolute path, line_number, and heirarchy of of files to current reference.
+  When an insert is read, we check everything to the end of the line and trim trailing white space. In this example, "../humanoids/elf scout" would be the insertion target, including the whitespace between "elf" and "scout". The file extension may be included but is implied if left out. We do not recognize other file extensions, causing "elf scout.foo" to result in a target of "elf scout.foo.init".
 ]
 
 

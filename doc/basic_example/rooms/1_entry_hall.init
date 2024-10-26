@@ -1,0 +1,7 @@
+insert ../characters/l_party.init
+
+@ Hammer of Crase
+  Bandits: 1
+
+@ Party
+  #Prisoner: -1

@@ -1,0 +1,8 @@
+insert ../characters/l_party.init
+
+@ Wildlife
+  Giant Centipede: 2
+  Gray Oozes: -2
+
+@ Party
+  #Prisoner: -1

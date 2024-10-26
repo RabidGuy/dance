@@ -34,13 +34,13 @@ def main(args):
 
 
 def pre_process(args):
-    expanded_file = include(args.filename)
+    expanded_file = insert(args.filename)
     # for line in expanded_file:
     #     print(line)
     return expanded_file
 
 
-def include(filename, parentdir="."):
+def insert(filename, parentdir="."):
     expanded_file = []
     filepath = pathlib.Path(os.sep.join([parentdir, filename])).resolve()
     linenumber = 0
@@ -50,11 +50,14 @@ def include(filename, parentdir="."):
             terms = line.split()
             if not terms:
                 continue
-            elif terms[0].startswith("//"):
+            elif terms[0].startswith("#"):
                 continue
-            elif terms[0] == "include":
+            elif terms[0] == "insert":
                 pd = os.path.dirname(filepath)
-                expanded_file.extend(include(terms[1], pd))
+                target = line[7:].strip()
+                if not target.endswith(".init"):
+                    target = target + ".init"
+                expanded_file.extend(insert(target, pd))
             else:
                 # expanded_file.append(' '.join(terms))
                 row = {
@@ -78,7 +81,7 @@ def get_actors_from_tokens(lines):
     group = ""
     for row in tokens:
         # Handle groups.
-        if row[0].startswith(':'):
+        if row[0].startswith('@'):
             group = ' '.join(row)[1:]
             continue
         # Handle actors.
@@ -86,6 +89,7 @@ def get_actors_from_tokens(lines):
                  "flags": [], "group": group}
         for element in row:
             # Handle integers.
+            # XXXnext Getting syntax warning.
             if re.fullmatch("-?\d+", element):
                 # XXX Does not handle multiple bonuses overwriting eachother.
                 actor["bonus"] = int(element)
@@ -99,8 +103,12 @@ def get_actors_from_tokens(lines):
             if re.fullmatch("disadv", element):
                 actor["flags"].append("disadv")
                 continue
+            if re.fullmatch("force", element):
+                actor["flags"].append("force")
             # Handle names.
             actor["name"].append(element)
+        # Trim colon.
+        actor["name"][-1] = actor["name"][-1][:-1]
         # Turn list of names into one space-separated string.
         actor["name"] = " ".join(actor["name"])
 
@@ -116,7 +124,10 @@ def roll_and_organize_initiative_order(actors, args):
         rolled = {"group": actor["group"], "name": actor["name"]}
         if not actor["flags"]:
             roll = d20()
-        if "adv" in actor["flags"]:
+        # XXXnext Force not working. Test on "basic_example\rooms\5_ceremonial_room.init".
+        if "force" in actor["flags"]:
+            roll = actor["bonus"]
+        elif "adv" in actor["flags"]:
             two_rolls = [d20() for _ in range(2)]
             roll = max(two_rolls)
         elif "disadv" in actor["flags"]:

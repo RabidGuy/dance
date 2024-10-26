@@ -1,8 +1,0 @@
-include ../characters/l_party.init
-
-@ Wildlife
-  Wight: 2
-  Swarms of Quippers: 3
-
-@ Party
-  #Prisoner: -1
