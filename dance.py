@@ -34,9 +34,6 @@ import re
 
 def main(args):
     expanded_file = pre_process(args)
-    # process()
-    # shuffle()
-    # post_process()
     actors = get_actors_from_tokens(expanded_file)
     initiative_order = roll_and_organize_initiative_order(actors, args)
     for row in initiative_order:
@@ -45,8 +42,6 @@ def main(args):
 
 def pre_process(args):
     expanded_file = insert(args.filename)
-    # for line in expanded_file:
-    #     print(line)
     return expanded_file
 
 
@@ -69,7 +64,6 @@ def insert(filename, parentdir="."):
                     target = target + ".init"
                 expanded_file.extend(insert(target, pd))
             else:
-                # expanded_file.append(' '.join(terms))
                 row = {
                     "text": line,
                     "filepath": filepath,
@@ -78,53 +72,29 @@ def insert(filename, parentdir="."):
                 expanded_file.append(row)
     return expanded_file
 
-
 def get_actors_from_tokens(lines):
-    # !!! Does not enforce specific ordering of elements.
-    # !!!     [<namewords>: <bonus> <keywords>]
-    def get_actors(lines):
-        for line in lines:
-            # print(line["filepath"], line["linenumber"])
-            yield line["text"].split()
-    tokens = get_actors(lines)
     actors = []
     group = ""
-    for row in tokens:
-        # Handle groups.
-        if row[0].startswith('@'):
-            group = ' '.join(row)[1:]
+    for line in lines:
+        print(line)
+        if line["text"].startswith("@"):
+            group = ' '.join(line["text"][1:].split())
             continue
-        # Handle actors.
-        actor = {"name": [], "bonus": 0,
-                 "flags": [], "group": group}
-        for element in row:
-            # Handle integers.
-            if re.fullmatch("-?[0-9]+", element):
-                # !!! Does not handle multiple bonuses overwriting eachother.
-                actor["bonus"] = int(element)
-                continue
-            # Handle keywords.
-            # !!! Does not handle conflicting or duplicate flags.
-            # !!!     Perhaps conflicts are better handled, later.
-            if re.fullmatch("adv", element):
-                actor["flags"].append("adv")
-                continue
-            if re.fullmatch("disadv", element):
-                actor["flags"].append("disadv")
-                continue
-            if re.fullmatch("force", element):
-                actor["flags"].append("force")
-                continue
-            # Handle names.
-            actor["name"].append(element)
-        # Trim colon.
-        actor["name"][-1] = actor["name"][-1][:-1]
-        # Turn list of names into one space-separated string.
-        actor["name"] = " ".join(actor["name"])
-
+        actor = {"name": None, "bonus": 0,
+                 "flag": None, "group": group}
+        name, values = line["text"].split(":")
+        actor["name"] = ' '.join(name.split())
+        values = values.split()
+        if len(values) == 1:
+            actor["bonus"] = int(values[0])
+        elif len(values) == 2:
+            actor["bonus"] = int(values[0])
+            actor["flag"] = values[1]
+        else:
+            raise ValueError("File \"{}\", line {}\nToo many values".format(
+                line["filepath"], line["linenumber"]))
         actors.append(actor)
     return actors
-
 
 def roll_and_organize_initiative_order(actors, args):
     # Roll and add bonus. Create clean list of actors for sorting.
@@ -132,23 +102,22 @@ def roll_and_organize_initiative_order(actors, args):
     for actor in actors:
         # Creates list: [Group, Name]
         rolled = {"group": actor["group"], "name": actor["name"]}
-        if not actor["flags"]:
+        if not actor["flag"]:
             roll = d20()
-        # !!!next Force not working. Test on "basic_example\rooms\5_ceremonial_room.init".
-        if "force" in actor["flags"]:
+        if actor["flag"] == "force":
             roll = actor["bonus"]
-        elif "adv" in actor["flags"]:
+        elif actor["flag"] == "adv":
             two_rolls = [d20() for _ in range(2)]
             roll = max(two_rolls)
-        elif "disadv" in actor["flags"]:
+        elif actor["flag"] == "disadv":
             two_rolls = [d20() for _ in range(2)]
             roll = min(two_rolls)
         # Modifies list: [Score, Group, Name]
         rolled["score"] = roll + actor["bonus"]
-        if "force" in actor["flags"]:
+        if actor["flag"] == "force":
             rolled["score"] = roll
         if args.verbose:
-            if "force" in actor["flags"]:
+            if actor["flags" == "force"]:
                 rolled["expression"] = (" <%i>" % (roll))
             else:
                 rolled["expression"] = (" [%i] + %i" % (roll, actor["bonus"]))
