@@ -76,7 +76,6 @@ def get_actors_from_tokens(lines):
     actors = []
     group = ""
     for line in lines:
-        print(line)
         if line["text"].startswith("@"):
             group = ' '.join(line["text"][1:].split())
             continue
