@@ -6,9 +6,8 @@ Syntax overview:
 insert <relative_path>
 ```
 
+Usage:
 ```
-usage:
-
 $ python dance.py cavern_entrance.init
 22: Wolves
 17: Danny
