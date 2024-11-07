@@ -116,7 +116,7 @@ def roll_and_organize_initiative_order(actors, args):
         if actor["flag"] == "force":
             rolled["score"] = roll
         if args.verbose:
-            if actor["flags" == "force"]:
+            if actor["flag"] == "force":
                 rolled["expression"] = (" <%i>" % (roll))
             else:
                 rolled["expression"] = (" [%i] + %i" % (roll, actor["bonus"]))
