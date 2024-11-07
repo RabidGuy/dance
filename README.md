@@ -145,7 +145,7 @@ campaign
  |  |-goblin_riders.init
  |  |-party_group.init
  |-scenes
- 	|-cold_stream.init
+    |-cold_stream.init
 ```
 
 We can set up our fight in the cold_stream.init file.
@@ -194,8 +194,8 @@ Occepi: 2
 Greykurren: 4 adv
 Hurgan Garromarsh: 0
 @ Goblins
-Goblins
-Wolves
+Goblins 2
+Wolves 2
 @ Environment
 Water: 10 force
 ```
