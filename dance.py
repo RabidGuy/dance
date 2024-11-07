@@ -89,8 +89,7 @@ def get_actors_from_tokens(lines):
                  "flags": [], "group": group}
         for element in row:
             # Handle integers.
-            # !!!next Getting syntax warning.
-            if re.fullmatch("-?\d+", element):
+            if re.fullmatch("-?[0-9]+", element):
                 # !!! Does not handle multiple bonuses overwriting eachother.
                 actor["bonus"] = int(element)
                 continue
