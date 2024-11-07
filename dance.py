@@ -104,6 +104,7 @@ def get_actors_from_tokens(lines):
                 continue
             if re.fullmatch("force", element):
                 actor["flags"].append("force")
+                continue
             # Handle names.
             actor["name"].append(element)
         # Trim colon.
