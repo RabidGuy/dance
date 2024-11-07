@@ -70,8 +70,8 @@ def insert(filename, parentdir="."):
 
 
 def get_actors_from_tokens(lines):
-    # XXX Does not enforce specific ordering of elements.
-    # XXX     [<namewords>: <bonus> <keywords>]
+    # !!! Does not enforce specific ordering of elements.
+    # !!!     [<namewords>: <bonus> <keywords>]
     def get_actors(lines):
         for line in lines:
             # print(line["filepath"], line["linenumber"])
@@ -89,14 +89,14 @@ def get_actors_from_tokens(lines):
                  "flags": [], "group": group}
         for element in row:
             # Handle integers.
-            # XXXnext Getting syntax warning.
+            # !!!next Getting syntax warning.
             if re.fullmatch("-?\d+", element):
-                # XXX Does not handle multiple bonuses overwriting eachother.
+                # !!! Does not handle multiple bonuses overwriting eachother.
                 actor["bonus"] = int(element)
                 continue
             # Handle keywords.
-            # XXX Does not handle conflicting or duplicate flags.
-            # XXX     Perhaps conflicts are better handled, later.
+            # !!! Does not handle conflicting or duplicate flags.
+            # !!!     Perhaps conflicts are better handled, later.
             if re.fullmatch("adv", element):
                 actor["flags"].append("adv")
                 continue
@@ -124,7 +124,7 @@ def roll_and_organize_initiative_order(actors, args):
         rolled = {"group": actor["group"], "name": actor["name"]}
         if not actor["flags"]:
             roll = d20()
-        # XXXnext Force not working. Test on "basic_example\rooms\5_ceremonial_room.init".
+        # !!!next Force not working. Test on "basic_example\rooms\5_ceremonial_room.init".
         if "force" in actor["flags"]:
             roll = actor["bonus"]
         elif "adv" in actor["flags"]:
