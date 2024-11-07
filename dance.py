@@ -136,9 +136,12 @@ def roll_and_organize_initiative_order(actors, args):
         # Modifies list: [Score, Group, Name]
         rolled["score"] = roll + actor["bonus"]
         if "force" in actor["flags"]:
-            rolled["score"] = actor["bonus"]
+            rolled["score"] = roll
         if args.verbose:
-            rolled["expression"] = (" [%i] + %i" % (roll, actor["bonus"]))
+            if "force" in actor["flags"]:
+                rolled["expression"] = (" <%i>" % (roll))
+            else:
+                rolled["expression"] = (" [%i] + %i" % (roll, actor["bonus"]))
         else:
             rolled["expression"] = ""
         rolled_actors.append(rolled)
