@@ -1,8 +1,10 @@
 Syntax overview:
-	# [comment]
-	@<group_name>
-	<name>: <bonus> [keyword]
-	insert <relative_path>
+```
+# [comment]
+@<group_name>
+<name>: <bonus> [keyword]
+insert <relative_path>
+```
 
 ```
 usage:
