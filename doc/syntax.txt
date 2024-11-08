@@ -9,25 +9,35 @@ lines may have leading or trailing whitespace, which allows for indentation.
 Elements
 --------
 
-Comments
-
-	#[any number of words or characters before EOL]
-
-	Comments must be placed on their own line and are ignored by the program.
-	They can be used to add descriptions within the file as well as to toggle off
-	lines without deleting them.
-
-
 Definition Syntax
 
 	<nameword> [[nameword] ...]: <modint> [[keyword] ...]
 
 	Each defintion must be placed on their own line. They are constructed of one
-	or more name words, a colon, exactly one integer, and zero or more keywords.
+	or more name words, a colon, exactly one integer, and zero or one keyword.
 
 	Example:
 
 		Quomop Gadsbe: 3 adv
+
+
+Names
+
+	<nameword> [[nameword] ...]
+
+	Names are made of one or more strings.
+
+
+Initiative Bonuses
+
+	<modint>
+
+
+Keywords
+
+	adv - roll twice, take higher
+	disadv - roll twice, take lower
+	force - return modint as result instead of rolling
 
 
 Groups
@@ -44,25 +54,6 @@ Groups
 	actors with higher and lower values than their own.
 
 
-Names
-
-	<nameword> [[nameword] ...]
-
-	Names are made of one or more non-integer strings.
-
-
-Initiative Bonuses
-
-	<modint>
-
-
-Keywords
-
-	adv - roll twice, take higher
-	disadv - roll twice, take lower
-	force - return modint as result instead of rolling
-
-
 Including Content from Other Files
 
 	insert <relativepath>
@@ -70,3 +61,12 @@ Including Content from Other Files
 	Examples:
 		insert ../monsters/grey dwarves
 		insert ../monsters/grey dwarves.init
+
+
+Comments
+
+	#[any number of words or characters before EOL]
+
+	Comments must be placed on their own line and are ignored by the program.
+	They can be used to add descriptions within the file as well as to toggle off
+	lines without deleting them.
