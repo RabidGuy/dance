@@ -7,5 +7,6 @@ insert ../characters/l_party.init
 # Has label.
 insert ../characters/l_rasilis.init
 
+@ Wildlife
 # Does not have label.
 insert ../monsters/wolves.init
