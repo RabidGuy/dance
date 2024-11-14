@@ -26,13 +26,19 @@
 # Dance - Automated initiative for rolling every round.
 
 
+import argparse
 import os
 import pathlib
 import random
 import re
 
 
-def main(args):
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("filename")
+    parser.add_argument("-v", "--verbose", help="increase output verbosity",
+                        action="store_true")
+    args = parser.parse_args()
     expanded_file = pre_process(args)
     actors = get_actors_from_tokens(expanded_file)
     initiative_order = roll_and_organize_initiative_order(actors, args)
@@ -167,10 +173,4 @@ def pretty_print(row):
 
 
 if __name__ == '__main__':
-    import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument("filename")
-    parser.add_argument("-v", "--verbose", help="increase output verbosity",
-                        action="store_true")
-    args = parser.parse_args()
-    main(args)
+    main()
