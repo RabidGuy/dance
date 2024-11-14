@@ -81,7 +81,13 @@ def get_actors_from_tokens(lines):
             continue
         actor = {"name": None, "bonus": 0,
                  "flag": None, "group": group}
-        name, values = line["text"].split(":")
+        # name, values = line["text"].split(":")
+        parts = line["text"].split(":")
+        if len(parts) != 2:
+            raise SyntaxError(
+                "expected one colon (:), found {}".format(len(parts))
+            )
+        name, values = parts
         actor["name"] = ' '.join(name.split())
         values = values.split()
         if len(values) == 1:
