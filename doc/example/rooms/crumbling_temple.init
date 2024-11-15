@@ -1,0 +1,16 @@
+insert ../characters/party_group.init
+
+@ Monstrosities
+  Mimic: 1
+
+@ Cultists
+  Cult Fanatic: 2
+  Cultists: 1
+
+###
+# Drop ceiling debris the first time someone casts a thunder spell
+# and every round after.
+###
+
+@ Environment
+  Ceiling Debris: 0

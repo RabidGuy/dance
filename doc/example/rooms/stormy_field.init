@@ -1,0 +1,8 @@
+insert ../characters/party_group.init
+
+@ Hammer of Crase
+  insert ../enemies/falconer.init
+  Scouts: 2
+
+@ Environment
+  Storm: 0

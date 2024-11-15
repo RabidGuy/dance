@@ -1,0 +1,13 @@
+insert ../characters/party_group
+
+@ Bandits
+  Berserker: 1
+  # (Bandits)
+  Crossbowmen: 1
+
+###
+# Bring in prisoner when they're released.
+###
+
+@ Party
+  # Prisoner: -1

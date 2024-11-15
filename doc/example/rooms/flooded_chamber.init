@@ -1,0 +1,8 @@
+insert ../characters/party_group.init
+
+@ Environment
+  Water: 10 force
+
+@ Wildlife
+  Water Weird: 3
+  Swarms of Quippers: 3
