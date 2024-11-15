@@ -65,7 +65,7 @@ def insert(filename, parentdir="."):
                 continue
             elif terms[0] == "insert":
                 pd = os.path.dirname(filepath)
-                target = line[7:].strip()
+                target = line.strip()[6:].strip()
                 if not target.endswith(".init"):
                     target = target + ".init"
                 expanded_file.extend(insert(target, pd))
